@@ -1,0 +1,481 @@
+﻿:root {
+    --accent: #d6336c;
+    --max-w: 1000px;
+    --overlay: rgba(10,31,68,0.05); /* subtle dark tint */
+    --text-overlay: rgba(10,31,68,0.85);
+}
+
+/* reset-ish */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+}
+
+html, body {
+    height: 100%
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    color: #0a1f44; /* dark blue text */
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* background image (fixed container) */
+.site-bg {
+    position: fixed;
+    inset: 0;
+    background-image: url('../images/background-image.png'); /* replace with your file */
+    background-size: cover;
+    background-position: center center;
+    filter: saturate(1.02) contrast(1.02);
+    z-index: -2;
+}
+
+    /* subtle overlay to help text readability */
+    .site-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--overlay);
+        z-index: -1;
+    }
+
+/* container */
+.container {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* header */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    background: transparent;
+    position: relative;
+    z-index: 2000; /* higher than month cards */
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: #0a1f44; /* dark blue logo */
+    text-shadow: 0 1px 3px rgba(255,255,255,0.4);
+}
+
+/* nav */
+/* ensure nav always appears above page content */
+.nav {
+    display: none; /* hidden initially */
+    position: fixed; /* fix to viewport */
+    top: 60px;
+    right: 20px;
+    background: rgba(255,255,255,0.95);
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    z-index: 99999; /* higher than any card */
+}
+    /* when menu is open */
+    .nav.show {
+        display: flex;
+        animation: fadeDown 0.3s ease;
+    }
+
+.navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white; /* or your preferred color */
+    z-index: 9999; /* make sure it sits above everything */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Fix toggle icon position and layering */
+.navbar-toggler {
+    z-index: 10000; /* ensures the toggle stays clickable */
+}
+/*.nav {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}*/
+
+.nav a {
+    color: #0a1f44; /* dark blue links */
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: transform .2s ease, background .2s ease;
+    
+}
+
+        .nav a:hover {
+            transform: translateY(-3px);
+            background: rgba(10,31,68,0.1); /* dark blue hover overlay */
+            color: #fff; /* optional highlight */
+        }
+
+/* menu button (mobile) */
+.menu-btn {
+    z-index: 1100; /* keeps it above the overlay and content */
+    display: none;
+    background: transparent;
+    border: 1px solid rgba(10,31,68,0.4);
+    color: #0a1f44;
+    padding: 6px 10px;
+    border-radius: 8px;
+    position: relative;
+    z-index: 2200;
+}
+
+/* hero */
+.hero {
+    margin-top: 40px;
+    padding: 40px 20px;
+    background: rgba(255,255,255,0.1); /* semi-transparent card */
+    border-radius: 16px;
+    text-align: center;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    color: #0a1f44; /* dark blue text */
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.1rem;
+    margin-bottom: 10px;
+    color: #0a1f44;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.3);
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp .8s ease forwards .2s;
+}
+
+.hero-sub {
+    margin-bottom: 18px;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: fadeUp .8s ease forwards .4s;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 18px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 12px;
+    font-weight: 600;
+    box-shadow: 0 6px 18px rgba(214,51,108,0.18);
+    transform: translateY(0);
+    transition: transform .18s ease;
+}
+
+    .btn:hover {
+        transform: translateY(-4px);
+    }
+
+/* footer */
+.site-footer {
+    text-align: center;
+    padding: 30px 0;
+    color: #0a1f44;
+    opacity: 0.9;
+}
+
+/* small screens */
+@media (max-width:768px) {
+    .nav {
+        display: none; /* hidden initially */
+        position: fixed; /* fix to viewport */
+        top: 60px;
+        right: 20px;
+        background: rgba(255,255,255,0.95);
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        z-index: 99999; /* higher than any card */
+    }
+
+    .menu-btn {
+        display: inline-block;
+        z-index: 2100;
+    }
+
+    .hero {
+        margin-top: 24px;
+        padding: 28px 12px;
+        border-radius: 12px;
+    }
+
+    .hero-title {
+        font-size: 1.6rem;
+    }
+}
+
+/* animations */
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* OUR STORY PAGE */
+.story-intro {
+    text-align: center;
+    color: #0a1f44;
+    background: rgba(255,255,255,0.2);
+    padding: 20px;
+    border-radius: 14px;
+    backdrop-filter: blur(6px);
+    margin-bottom: 20px;
+}
+
+.story-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+}
+
+.month-card {
+    background: rgba(255,255,255,0.25);
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    color: #0a1f44;
+    position: relative;
+    transition: transform .3s ease, box-shadow .3s ease;
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+    overflow: hidden;
+    animation: fadeUp .6s ease forwards;
+    z-index: 1; /* keeps them underneath header/nav */
+}
+
+    .month-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+    }
+
+    .month-card img {
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 8px;
+    }
+
+    .month-card input[type="file"] {
+        display: none;
+    }
+
+.month-label {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #0a1f44;
+}
+
+.upload-btn {
+    background: var(--accent);
+    border: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background .3s ease;
+}
+
+    .upload-btn:hover {
+        background: #c02559;
+    }
+
+/* message card */
+.message-card {
+    background: rgba(255,255,255,0.2);
+    padding: 24px;
+    border-radius: 14px;
+    color: #0a1f44;
+    margin-top: 24px;
+    backdrop-filter: blur(6px);
+    animation: fadeUp .6s ease forwards .1s;
+}
+
+    .message-card p {
+        line-height: 1.6;
+        margin-bottom: 12px;
+    }
+/*#memories {
+    text-align: center;
+    padding: 40px;
+    color: #1a237e;*/ /* dark blue */
+/*}
+
+.memory {
+    margin-bottom: 40px;
+    transition: transform 0.3s ease;
+}
+
+    .memory:hover {
+        transform: scale(1.05);
+    }
+
+    .memory img {
+        max-width: 90%;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }*/
+
+/* MEMORIES PAGE */
+/* 🌸 Memories Page – Soft Romantic Style 🌸 */
+.memories-section {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+    .memories-section h2 {
+        color: #143d59; /* elegant dark navy-blue tone */
+        font-size: 2.2rem;
+        font-weight: 600;
+        margin-bottom: 2.5rem;
+        letter-spacing: 1px;
+    }
+
+/* The grid layout for memory cards */
+.memories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+    justify-items: center;
+    padding: 0 1rem;
+}
+
+/* Individual memory cards */
+.memory {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    padding: 1.2rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 320px;
+    backdrop-filter: blur(5px);
+}
+
+    .memory:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Image styling */
+    .memory img {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+        border-radius: 15px;
+        border: 3px solid #e1ecf7; /* subtle pastel blue border */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Caption text under each image */
+    .memory p {
+        color: #204a73; /* rich but soft dark blue */
+        font-size: 1rem;
+        font-weight: 500;
+        margin-top: 0.9rem;
+        letter-spacing: 0.3px;
+    }
+
+/* Optional subtle fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.memory {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+/* smaller screens adjustments */
+@media (max-width: 600px) {
+    .memories-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .memory img {
+        height: 350px;
+    }
+
+    .memory p {
+        font-size: 0.95rem;
+    }
+}
+
+
+/* Mobile menu button */
+/* Mobile menu button */
+.menu-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 10000; /* must be above everything */
+    position: relative;
+}
+
+/* Nav menu */
+.nav {
+    display: none; /* hidden initially */
+    position: fixed; /* fixed to viewport */
+    top: 60px; /* adjust depending on header height */
+    right: 20px;
+    background: rgba(255,255,255,0.95);
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    z-index: 100000; /* above everything else */
+}
+
+    .nav.show {
+        display: flex; /* show when toggled */
+    }
+
+    .nav a {
+        text-decoration: none;
+        color: #0a1f44;
+        font-weight: 600;
+        padding: 6px 10px;
+        border-radius: 8px;
+    }
+
+        .nav a:hover {
+            color: var(--accent);
+        }
+
