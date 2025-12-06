@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Love Letter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="site-bg"></div>
+
+    <!-- Floating hearts container -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <header class="site-header">
+        <div class="container">
+            <h1 class="logo">Love Letter 💌</h1>
+            <button id="menuToggle" class="menu-btn" aria-expanded="false">☰</button>
+            <nav class="nav" id="nav">
+                <a href="index.html">Home</a>
+                <a href="memories.html">Memories</a>
+                <a href="message.html">Message</a>
+                <a href="love-letter.html">Love Letter</a>
+                <a href="ourstory.html">Our Story</a>
+                <a href="jock.html">OG Favourite Boy</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <div class="envelope-container" id="envelopeContainer">
+            <!-- Instruction text -->
+            <p class="tap-instruction" id="tapInstruction">Tap the envelope to open 💌</p>
+
+            <!-- Envelope -->
+            <div class="envelope" id="envelope">
+                <div class="envelope-back"></div>
+                <div class="envelope-front"></div>
+                <div class="envelope-flap"></div>
+                <div class="envelope-heart">❤️</div>
+            </div>
+
+            <!-- Letter (hidden initially) -->
+            <section class="love-letter-card" id="letter">
+                <h2 class="letter-title">GIRLFRIENDDDDD!!!!</h2>
+
+                <div class="letter-content">
+                    <!-- YOU CAN EDIT THIS MESSAGE (2-3 SENTENCES) -->
+                    <p>
+                        I just wanted to say goodluck for the last 2 days of the show. I know its the last thing you feel like doing 
+                        but youre almost there and once its over then youre finally done with the college and can move onto the next 
+                        chapter which Im so excited for and feel so privileged that I get to be a part of it and get to witness it live, with front
+                        row tickets. Im so proud you babe...
+                    </p>
+
+                    <p class="letter-closing">
+                        love,<br>
+                        <span class="signature">BOYRFRIENDDD!!! ❤️</span>
+                    </p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>Made with ❤️ by Connor</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/hearts.js"></script>
+    <script src="js/envelope.js"></script>
+</body>
+</html>
